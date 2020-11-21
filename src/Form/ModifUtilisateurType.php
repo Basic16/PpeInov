@@ -11,7 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-class InscriptionType extends AbstractType
+
+class ModifUtilisateurType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -19,9 +20,10 @@ class InscriptionType extends AbstractType
             ->add('nom',TextType::class)
             ->add('prenom',TextType::class)
             ->add('datedenaissance',BirthdayType::class)
+            
             ->add('mdp',PasswordType::class)
             ->add('mail',EmailType::class)
-            ->add('inscription',SubmitType::class)
+            ->add('modifier',SubmitType::class)
         ;
     }
 
