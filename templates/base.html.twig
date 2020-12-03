@@ -18,10 +18,18 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+
+
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li>
         <a class="nav-link" href="{{ path('listeutilisateurs') }}">liste-utilisateurs</a>
+      </li>
+      <li>
+        <a class="nav-link" href="{{ path('theme') }}">liste des thèmes </a>
+      </li>
+       <li>
+        <a class="nav-link" href="{{ path('categorie') }}">liste des catégories </a>
       </li>
 
 
@@ -32,11 +40,18 @@
     </form>
   </div>
 </nav>
+
+
+{% for message in app.flashes('notice') %}
+ <div class="flash-notice">
+ {{ message }}
+ </div>
+ {% endfor %}
     
 
   {% endblock %}
   {% block content %}
-  {%endblock%}
+  {% endblock %}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
