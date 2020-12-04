@@ -1,0 +1,59 @@
+{% extends 'base.html.twig'%}
+{% block content%}
+<div class="container-fluid">
+            <div class="row justify-content-center">
+                <h1 class="text-center text-primary p-4">Liste des tests</h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-8 p-4 m-0 text-primary">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                        niveau
+                                    </th>
+                                    <th scope="col">
+                                        libelle
+                                    </th>
+                                    <th scope="col">
+                                        modifier
+                                    </th>
+                                    <th scope="col">
+                                        supprimer
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for test in test %}
+                                    <tr class="{{ cycle(['table-primary', 'table-secondary'], loop.index0) }}">
+                                   
+                                        
+                                        <td>
+                                            {{test.niveau }}
+                                        </td>
+                                        <td>
+                                            {{test.libelle |capitalize }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('modif-test',{'id': test.id}) }}"><span class="material-icons">
+                                                create
+                                            </span></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{path('liste-test',{'supp':test.id})}}" class="text-white">
+											<span class="material-icons" title="Supprimer le test">
+												delete
+											</span>
+										</a>
+                                        </td>
+
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock%}

@@ -15,7 +15,7 @@
 			{% endblock %}
 		</title>
 	</head>
-	<body>
+	<body >
 		{% block body %}
 			<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 				<a class="navbar-brand" href="{{path('index')}}">Innovanglais</a>
@@ -26,22 +26,55 @@
 
 				<div class="collapse navbar-collapse" id="navbarColor01">
 					<ul class="navbar-nav mr-auto">
-						<li>
+						<li >
 							<a class="nav-link" href="{{ path('listeutilisateurs') }}">liste-utilisateurs</a>
 						</li>
-						<li>
-							<a class="nav-link" href="{{ path('theme') }}">liste des thèmes
+						
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+							thème
 							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          						<a class="dropdown-item" href="{{ path('ajout_theme') }}">ajouter un thème</a>
+          						<a class="dropdown-item" href="{{ path('theme') }}">liste des thèmes</a>
+        					</div>
 						</li>
-						<li>
-							<a class="nav-link" href="{{ path('categorie') }}">liste des catégories
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+								catégorie
 							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          						<a class="dropdown-item" href="{{ path('ajout_categorie') }}">ajouter une catégorie</a>
+          						<a class="dropdown-item" href="{{ path('categorie') }}">liste des catégories</a>
+        					</div>
 						</li>
-						<li>
-							<a class="nav-link" href="{{ path('abonnement') }}">liste des abonnements
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+							abonnement
 							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          						<a class="dropdown-item" href="{{ path('ajout_abonnement') }}">ajouter un abonnement</a>
+          						<a class="dropdown-item" href="{{ path('abonnement') }}">liste des abonnements</a>
+        					</div>
 						</li>
-
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+							test
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          						<a class="dropdown-item" href="{{ path('test') }}">ajouter un test</a>
+          						<a class="dropdown-item" href="{{ path('liste-test') }}">liste des tests</a>
+        					</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+							Vocabulaire
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          						<a class="dropdown-item" href="{{ path('vocabulaire') }}">ajouter un vocabulaire</a>
+          						<a class="dropdown-item" href="{{ path('liste-vocabulaire') }}">liste des vocabulaires</a>
+        					</div>
+						</li>
 
 					</ul>
 					<form class="form-inline my-2 my-lg-0">
@@ -50,6 +83,8 @@
 					</form>
 				</div>
 			</nav>
+
+			
 
 
 			{% for message in app.flashes('notice') %}
