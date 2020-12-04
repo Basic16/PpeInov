@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block title %}
 	{{parent()}}
-	Liste thèmes
+	Liste Abonnements
 {% endblock %}
 {% block body %}
 	{{parent()}}
 	<div class="container-fluid">
 		<div class="row justify-content-center">
 			<h1 class="text-center text-primary p-4">
-				Liste des thèmes
+				Liste des Abonnements
 			</h1>
 		</div>
 		<div class="row justify-content-center">
@@ -18,32 +18,34 @@
 						<thead>
 							<tr>
 								<th scope="col">
-									Libellé
+									Type
 								</th>
-								<th scope="col">
-									modifier
+                                <th scope="col">
+									Paiement
 								</th>
-								<th scope="col">
-									supprimer
-								</th>
+								<th></th>
+                                <th></th>
 							</tr>
 						</thead>
 						<tbody>
-							{% for theme in themes %}
+							{% for abonnement in abonnements %}
 								<tr class="{{ cycle(['table-primary', 'table-secondary'], loop.index0) }}">
 									<td>
-										{{theme.libelle |capitalize }}
+										{{abonnement.type |capitalize }}
+									</td>
+                                    <td>
+										{{abonnement.paiement |capitalize }}
 									</td>
 									<td>
-										<a href="{{path('modif_theme',{'id': theme.id})}}" class="text-white">
-											<span class="material-icons" title="Modifier un	thème">
+										<a href="{{path('modif_abonnement',{'id': abonnement.id})}}" class="text-white">
+											<span class="material-icons" title="Modifier un	Abonnement">
 												create
 											</span>
 										</a>
 									</td>
 									<td>
-										<a href="{{path('theme',{'supp':theme.id})}}" class="text-white">
-											<span class="material-icons" title="Supprimer le thème">
+										<a href="{{path('abonnement',{'supp':abonnement.id})}}" class="text-white">
+											<span class="material-icons" title="Supprimer l'abonnement">
 												delete
 											</span>
 										</a>

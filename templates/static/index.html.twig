@@ -3,10 +3,16 @@
 {% block title %}{{parent()}}{% endblock %}
 
 {% block content%}
-<a href="{{ path('inscription') }}">S'inscrire</a>
-<br/>
-<a href="{{ path('ajout_theme') }}">Ajout d'un thème</a>
-<br/>
-<a href="{{ path('ajout_categorie') }}">Ajout d'une catégorie</a>
+<h1><p> Apprenez l'anglais Avec InnovAnglais</p></h1>
 
+<a href="#" class="btn btn-primary btn-lg">Se connecter</a>
+<br/>
+
+
+
+<div>
+<p>Pas encore inscrit ?</p>
+<a href="{{ path('inscription') }}" class="btn btn-primary btn-lg">S'inscrire</a>
+<br/>
+<div>
 {% endblock %}
