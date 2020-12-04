@@ -31,7 +31,19 @@
        <li>
         <a class="nav-link" href="{{ path('categorie') }}">liste des catégories </a>
       </li>
-
+      {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{path('inscrire')}}">S'inscrire</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{path('app_login')}}">Se connecter</a>
+          </li>
+      {% else %}   
+        <li class="nav-item">
+            <a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
+          </li>
+      {% endif %}    
+     
 
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -41,7 +53,9 @@
   </div>
 </nav>
 
-
+ {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+        <h3>Bonjour {{app.user.email}}</h3>
+    {% endif %}
 {% for message in app.flashes('notice') %}
  <div class="flash-notice">
  {{ message }}
