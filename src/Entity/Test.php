@@ -22,6 +22,11 @@ class Test
      */
     private $niveau;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $libelle;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +40,18 @@ class Test
     public function setNiveau(int $niveau): self
     {
         $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    public function getLibelle(): ?string
+    {
+        return $this->libelle;
+    }
+
+    public function setLibelle(string $libelle): self
+    {
+        $this->libelle = $libelle;
 
         return $this;
     }
