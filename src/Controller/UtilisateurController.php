@@ -6,9 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\InscriptionType;
-use App\Form\ModifUtilisateurType;
+
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Utilisateur;
+use App\Entity\User;
+use App\Form\ModifUserType;
 
 class UtilisateurController extends AbstractController
 {
@@ -44,7 +46,15 @@ class UtilisateurController extends AbstractController
     public function listeutilisateurs(Request $request): Response
     {   
         $em = $this->getDoctrine();
-        $repoUtilisateur = $em->getRepository(Utilisateur::class);
+        $repoUtilisateur = $em->getRepository(User::class);
+        if ($request->get('supp') != null) {
+            $utilisateur = $repoUtilisateur->find($request->get('supp'));
+            if ($utilisateur != null) {
+                $em->getManager()->remove($utilisateur);
+                $em->getManager()->flush();
+            }
+            return $this->redirectToRoute('listeutilisateurs');
+        }
             
             
         $utilisateur = $repoUtilisateur->findBy(array(), array('nom' => 'ASC','prenom' => 'ASC'));
@@ -59,13 +69,13 @@ class UtilisateurController extends AbstractController
     public function modifutilisateur(int $id,Request $request): Response
     {   
         $em = $this->getDoctrine();
-        $repoUtilisateur = $em->getRepository(Utilisateur::class);
+        $repoUtilisateur = $em->getRepository(User::class);
         $utilisateur =  $repoUtilisateur->find($id);
         if($utilisateur==null){
             $this->addFlash('notice', "Cet utilisateur");
             return $this->redirectToRoute('listeutilisateurs');
                 }
-        $form = $this->createForm(ModifUtilisateurType::class,$utilisateur);
+        $form = $this->createForm(ModifUserType::class,$utilisateur);
 
 
         if ($request->isMethod('POST')) {

@@ -1,5 +1,18 @@
 {% extends 'base.html.twig'%}
 {% block content%}
-{{form(form)}}
-
+{{ form_start(form) }}
+				<div class="form-group mx-auto text-center w-25 p-3">
+					{{ form_label(form.niveau, 'Niveau : ', {'label_attr': {'class': 'font-weightbold'}}
+					) }}
+					{{ form_widget(form.niveau, {'attr': {'class': 'form-control'}}
+					) }}
+					{{ form_label(form.libelle, 'Libelle : ', {'label_attr': {'class': 'font-weightbold'}}
+					) }}
+					{{ form_widget(form.libelle, {'attr': {'class': 'form-control'}}
+					) }}
+                   
+				
+                
+				{{ form_widget(form.modifier, { 'label': "Modifier", 'attr': {'class': 'btn font-weightbold bg-primary text-white mx-auto text-center'}}) }}
+				</div>
 {% endblock%}

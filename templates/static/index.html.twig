@@ -5,14 +5,21 @@
 {% block content%}
 <h1><p> Apprenez l'anglais Avec InnovAnglais</p></h1>
 
-<a href="#" class="btn btn-primary btn-lg">Se connecter</a>
+
 <br/>
 
 
 
 <div>
-<p>Pas encore inscrit ?</p>
-<a href="{{ path('inscription') }}" class="btn btn-primary btn-lg">S'inscrire</a>
+
+{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{path('app_login')}}" class="btn btn-primary btn-lg">Se connecter</a>
+        <p>Pas encore inscrit ?</p>
+		<a href="{{ path('inscrire') }}" class="btn btn-primary btn-lg">S'inscrire</a>
+
+
+		{% endif %}
+
 <br/>
 <div>
 {% endblock %}

@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Vocabulaire;
 use App\Form\ModifVocabulaireType;
 
-
 class VocabulaireController extends AbstractController
 {
     /**
@@ -82,7 +81,7 @@ class VocabulaireController extends AbstractController
                 $em->flush();
                 $this->addFlash('notice', 'Vocabulaire modifié');
             }
-            return $this->redirectToRoute('liste-test');
+            return $this->redirectToRoute('liste-vocabulaire');
         }
         return $this->render('vocabulaire/modif-vocabulaire.html.twig', [
             'form' => $form->createView()

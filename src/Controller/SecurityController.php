@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Form\UserType;
+use App\Form\ModifUserType;
 
 class SecurityController extends AbstractController
 {
@@ -53,6 +54,7 @@ class SecurityController extends AbstractController
                 $mdp = $user->getPassword();
                 if($mdp == $mdpConf){
                     $user->setRoles(array('ROLE_USER'));
+                    $user->setdateinscription(new \DateTime());
                     $user->setPassword($passwordEncoder->encodePassword($user, $user->getPassword()));
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($user);
@@ -71,4 +73,6 @@ class SecurityController extends AbstractController
         return $this->render('static/inscrire.html.twig', [
            'form'=>$form->createView()
            ]);
-        }}
+        }
+        
+    }
