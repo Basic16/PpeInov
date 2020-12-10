@@ -69,7 +69,7 @@ class AbonnementController extends AbstractController
         $repoAbonnement = $em->getRepository(Abonnement::class);
         $abonnement = $repoAbonnement->find($id);
         if ($abonnement == null) {
-            $this->addFlash('notice', "Cette Abonnement n'existe pas");
+            $this->addFlash('notice', "Cet Abonnement n'existe pas");
             return $this->redirectToRoute('abonnement');
         }
         $form = $this->createForm(ModifAbonnementType::class, $abonnement);
