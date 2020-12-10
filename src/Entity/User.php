@@ -34,6 +34,26 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $datedenaissance;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateinscription;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -110,5 +130,53 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getDatedenaissance(): ?\DateTimeInterface
+    {
+        return $this->datedenaissance;
+    }
+
+    public function setDatedenaissance(\DateTimeInterface $datedenaissance): self
+    {
+        $this->datedenaissance = $datedenaissance;
+
+        return $this;
+    }
+
+    public function getDateinscription(): ?\DateTimeInterface
+    {
+        return $this->dateinscription;
+    }
+
+    public function setDateinscription(\DateTimeInterface $dateinscription): self
+    {
+        $this->dateinscription = $dateinscription;
+
+        return $this;
     }
 }

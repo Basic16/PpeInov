@@ -9,8 +9,37 @@
         <div class="row justify-content-center">
             <h1 class="text-center text-primary p-4">S'inscrire</h1>
         </div>
-          <div class="row justify-content-center">
-           {{form(form)}}
+          <div class="form-group mx-auto text-center w-25 p-3">
+           {{ form_start(form) }}
+                
+                    {{ form_label(form.nom, 'Nom : ', {'label_attr': {'class': 'font-weightbold'}}
+					) }}
+					{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}
+					) }}
+                
+                
+                    {{ form_label(form.prenom, 'Votre prenom ', {'label_attr': {'class': 'font-weightbold'}}) }}
+                    {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                
+                
+                    {{ form_label(form.datedenaissance, 'Votre Date naissance ', {'label_attr': {'class': 'font-weightbold'}}) }}
+                    {{ form_widget(form.datedenaissance, {'attr': {'class': ''}}) }}
+                
+                    {{ form_label(form.email, 'Email ', {'label_attr': {'class': 'font-weightbold'}}) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                
+                
+                    {{ form_label(form.password, 'Mot de passe', {'label_attr': {'class': 'font-weightbold'}}) }}
+                    {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+               
+                
+                    {{ form_label(form.confirmation, 'Confirmation ', {'label_attr': {'class': 'font-weightbold'}}) }}
+                    {{ form_widget(form.confirmation, {'attr': {'class': 'form-control'}}) }}
+                
+                
+                    {{ form_widget(form.inscrire, { 'label': "Inscripion", 'attr': {'class': 'btn font-weightbold bg-primary text-white mx-auto text-center'}}) }}
+                
+                {{ form_end(form) }}
         </div>
         
 
