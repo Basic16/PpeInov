@@ -17,6 +17,7 @@ class ModifAbonnementType extends AbstractType
         $builder
         ->add('type', TextType::class)
         ->add('paiement', NumberType::class)
+        ->add('prix', NumberType::class)
         ->add('modif_abonnement', SubmitType::class)
         ;
     }

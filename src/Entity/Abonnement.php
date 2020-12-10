@@ -27,6 +27,11 @@ class Abonnement
      */
     private $paiement;
 
+    /**
+     * @ORM\Column(type="decimal", precision=8, scale=2)
+     */
+    private $prix;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Abonnement
     public function setPaiement(string $paiement): self
     {
         $this->paiement = $paiement;
+
+        return $this;
+    }
+
+    public function getPrix(): ?string
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(string $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }

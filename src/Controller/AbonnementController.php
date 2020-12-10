@@ -50,7 +50,7 @@ class AbonnementController extends AbstractController
 
                 $em->persist($abonnement); // Nous enregistrons notre nouveau abonnement
                 $em->flush(); // Nous validons notre ajout
-                $this->addFlash('notice', 'abonnement inséré'); // Nous préparons le message à
+                $this->addFlash('notice', 'Abonnement inséré'); // Nous préparons le message à
 
             }
             return $this->redirectToRoute('ajout_abonnement');
