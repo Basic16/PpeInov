@@ -87,4 +87,17 @@ class TestController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    /**
+     * @Route("/exercice", name="exercice")
+     */
+    public function exercice(Request $request): Response
+    {
+        
+
+        
+        return $this->render('test/exercice.html.twig', [
+            
+            
+        ]);
+    }
 }

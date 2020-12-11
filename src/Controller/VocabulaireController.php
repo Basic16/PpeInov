@@ -17,7 +17,7 @@ class VocabulaireController extends AbstractController
      */
     public function index(Request $request): Response
     {   
-        $vocabulaire = new Vocabulaire();
+        $vocabulaire = new Vocabulaire(); // Instanciation d’un objet Abonnement
         $form = $this->createForm(AjoutVocabulaireType::class, $vocabulaire);
 
         if ($request->isMethod('POST')) {
@@ -27,17 +27,15 @@ class VocabulaireController extends AbstractController
 
                 $em = $this->getDoctrine()->getManager();
 
-                $em->persist($vocabulaire); 
-                $em->flush(); 
-                $this->addFlash('notice', 'Vocabulaire inséré'); 
+                $em->persist($vocabulaire); // Nous enregistrons notre nouveau abonnement
+                $em->flush(); // Nous validons notre ajout
+                $this->addFlash('notice', 'Vocabulaire inséré'); // Nous préparons le message à
 
             }
             return $this->redirectToRoute('vocabulaire');
         }
-        
-        return $this->render('vocabulaire/index.html.twig', [
-            'controller_name' => 'VocabulaireController',
-            'form'=>$form->createView()
+        return $this->render('vocabulaire/ajout_abonnement.html.twig', [
+            'form' => $form->createView() // Nous passons le formulaire à la vue
         ]);
     }
     /**
