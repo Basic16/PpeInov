@@ -18,8 +18,9 @@
 		<a href="{{ path('inscrire') }}" class="btn btn-primary btn-lg">S'inscrire</a>
 
 
-		{% endif %}
+		
 
-<br/>
-<div>
+{% else%}
+<a href="{{ path('exercice') }}">Passer un test</a>
+{% endif %}
 {% endblock %}
