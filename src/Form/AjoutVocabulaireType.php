@@ -15,6 +15,7 @@ class AjoutVocabulaireType extends AbstractType
     {
         $builder
         ->add('libelle',TextType::class)
+        ->add('libelle_en',TextType::class)
         ->add('ajouter',SubmitType::class)
         ;
     }

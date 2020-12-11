@@ -29,12 +29,12 @@ class VocabulaireController extends AbstractController
 
                 $em->persist($vocabulaire); // Nous enregistrons notre nouveau abonnement
                 $em->flush(); // Nous validons notre ajout
-                $this->addFlash('notice', 'vocabulaire inséré'); // Nous préparons le message à
+                $this->addFlash('notice', 'Vocabulaire inséré'); // Nous préparons le message à
 
             }
             return $this->redirectToRoute('vocabulaire');
         }
-        return $this->render('vocabulaire/index.html.twig', [
+        return $this->render('vocabulaire/ajout_abonnement.html.twig', [
             'form' => $form->createView() // Nous passons le formulaire à la vue
         ]);
     }
