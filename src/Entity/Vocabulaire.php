@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\VocabulaireRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,6 +24,12 @@ class Vocabulaire
      */
     private $libelle;
 
+
+    public function __construct()
+    {
+        $this->themes = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -38,4 +46,6 @@ class Vocabulaire
 
         return $this;
     }
+
+ 
 }

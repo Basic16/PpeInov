@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -53,6 +55,20 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $dateinscription;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Fichier::class, cascade={"persist", "remove"})
+     */
+    private $fichier;
+
+   
+
+    public function __construct()
+    {
+        $this->test = new ArrayCollection();
+    }
+
+ 
 
     public function getId(): ?int
     {
@@ -179,4 +195,19 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getFichier()
+    {
+        return $this->fichier;
+    }
+
+    public function setFichier($fichier)
+    {
+        $this->fichier = $fichier;
+
+        return $this;
+    }
+
+ 
+  
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TestRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,10 @@ class Test
      * @ORM\Column(type="string", length=255)
      */
     private $libelle;
+
+  
+
+  
 
     public function getId(): ?int
     {
@@ -55,4 +61,7 @@ class Test
 
         return $this;
     }
+
+   
+  
 }
