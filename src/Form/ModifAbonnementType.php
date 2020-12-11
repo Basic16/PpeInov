@@ -6,6 +6,9 @@ use App\Entity\Abonnement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ModifAbonnementType extends AbstractType
 {
@@ -14,6 +17,7 @@ class ModifAbonnementType extends AbstractType
         $builder
         ->add('type', TextType::class)
         ->add('paiement', NumberType::class)
+        ->add('prix', NumberType::class)
         ->add('modif_abonnement', SubmitType::class)
         ;
     }

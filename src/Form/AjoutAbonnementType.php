@@ -17,6 +17,7 @@ class AjoutAbonnementType extends AbstractType
         $builder
             ->add('type', TextType::class)
             ->add('paiement', NumberType::class)
+            ->add('prix', NumberType::class)
             ->add('ajout_abonnement', SubmitType::class)
         ;
     }

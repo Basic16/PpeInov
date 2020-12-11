@@ -10,6 +10,7 @@
 		<!-- Bootstrap CSS -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<title>
 			{% block title %}
 				Innovanglais
@@ -100,14 +101,13 @@
 								</a>
 							</div>
 						</li>
-						<li class="nav-item dropdown">
-							<a class="dropdown-item" id="navbarDropdownMenuLink" href="http://serveur1.arras-sio.com/symfony4-4057/PpeInov/public/api">
-									API
-								</a>
-						</li>
 						{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-							
-							
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('app_login')}}">
+									Se connecter
+								</a>
+							</li>
+
 						{% else %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{path('app_logout')}}">
@@ -118,21 +118,30 @@
 
 
 					</ul>
-					
+
 				</div>
 			</nav>
 
-			
+
 			{% for message in app.flashes('notice') %}
+
 				<div class="flash-notice">
-					{{ message }}
+					<div class="alert alert-info alert-dismissible fade show" role="alert">
+						<strong>
+							{{ message }}
+						</strong>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">
+								&times;
+							</span>
+						</button>
+					</div>
+
 				</div>
 			{% endfor %}
 		</body>
 	</html>
-</ul>
-</div></nav>{% for message in app.flashes('notice') %}<div class="flash-notice">
-
+</ul></div></nav>{% for message in app.flashes('notice') %}<div class="flash-notice">
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
 	<strong>
 		{{ message }}
@@ -142,4 +151,6 @@
 			&times;
 		</span>
 	</button>
-</div></div>{% endfor %}{% endblock %}{% block content %}{% endblock %}<!-- Optional JavaScript --><!-- jQuery first, then Popper.js, then Bootstrap JS --><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script></body></html>
+</div>
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert"></div></div>{% endfor %}{% endblock %}{% block content %}{% endblock %}<!-- Optional JavaScript --><!-- jQuery first, then Popper.js, then Bootstrap JS --><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script></body></html>
