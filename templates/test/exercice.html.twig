@@ -1,4 +1,15 @@
 {% extends 'base.html.twig'%}
 {% block content%}
 
+<select class="btn btn-primary" id="selectTheme">
+    <option value="base">Choisissez un theme</option>
+</select>
+
+<button class="btn btn-primary btn-lg" id="boutonExercice">Commencer le test</button>
+
+<form id="formulaireExercice" class="form-inline my-2 my-lg-0">
+    <input type=text class="form-control mr-sm-2">
+    <button class="btn btn-primary btn-lg">Valider</button>
+</form>
+
 {%endblock%}
