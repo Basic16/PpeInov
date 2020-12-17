@@ -38,6 +38,8 @@ class AppFixtures extends Fixture
         $this->listCategories($manager);
         $this->listThemes($manager);
         $this->listAbonnements($manager);
+        $this->listAdmin($manager);
+
 
         
     }
@@ -142,6 +144,21 @@ class AppFixtures extends Fixture
 
         $manager->flush();
     }
+
+    public function listAdmin(ObjectManager $manager){
+        $admin = new User();
+        $admin->setNom('ADMIN');
+        $admin->setPrenom('admin');
+        $admin->setEmail('admin@admin');
+        $admin->setPassword('admin');
+        $admin->setDatedenaissance(new \DateTime());
+        $admin->setDateInscription(new \DateTime());
+        $manager->persist($admin);
+        
+
+        $manager->flush();
+    }
+
 
     public function loadUsers(){
         for($i=0;$i<10;$i++){
