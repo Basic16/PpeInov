@@ -17,14 +17,15 @@ class AppFixtures extends Fixture
 {
     private $manager;
     private $faker;
-
+    private $encoder;
     
     
 
         
 
-    public function __construct(){
+    public function __construct(UserPasswordEncoderInterface $encoder){
         $this->faker=Factory::create("fr_FR");
+        $this->encoder=$encoder;
     }
 
 
@@ -149,7 +150,7 @@ class AppFixtures extends Fixture
 
     public function listAdmin(ObjectManager $manager){
         $admin = new User();
-        $password = $this->encode->encodePassword($admin, "admin");
+        $password = $this->encoder->encodePassword($admin, "admin");
         $admin->setNom('ADMIN');
         $admin->setPrenom('admin');
         $admin->setEmail('admin@admin');
