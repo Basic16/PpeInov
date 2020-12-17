@@ -29,6 +29,21 @@ class Test
      */
     private $libelle;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="test")
+     */
+    private $users;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Theme::class, inversedBy="tests")
+     */
+    private $theme;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+
   
 
   
@@ -58,6 +73,45 @@ class Test
     public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addTest($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeTest($this);
+        }
+
+        return $this;
+    }
+
+    public function getTheme(): ?Theme
+    {
+        return $this->theme;
+    }
+
+    public function setTheme(?Theme $theme): self
+    {
+        $this->theme = $theme;
 
         return $this;
     }
