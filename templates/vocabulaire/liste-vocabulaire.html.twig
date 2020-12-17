@@ -14,6 +14,9 @@
                                         libelle
                                     </th>
                                     <th scope="col">
+                                        libelle_en
+                                    </th>
+                                    <th scope="col">
                                         modifier
                                     </th>
                                     <th scope="col">
@@ -28,6 +31,9 @@
                                    
                                         <td>
                                             {{vocabulaire.libelle |capitalize }}
+                                        </td>
+                                        <td>
+                                            {{vocabulaire.libelleen |capitalize }}
                                         </td>
                                         <td>
                                             <a href="{{ path('modif-vocabulaire',{'id': vocabulaire.id}) }}"><span class="material-icons">

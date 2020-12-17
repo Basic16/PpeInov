@@ -14,6 +14,7 @@ class ModifVocabulaireType extends AbstractType
     {
         $builder
             ->add('libelle',TextType::class)
+            ->add('libelle_en',TextType::class)
             ->add('modifier', SubmitType::class)
         ;
     }

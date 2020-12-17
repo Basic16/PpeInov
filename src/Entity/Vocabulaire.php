@@ -22,6 +22,11 @@ class Vocabulaire
      */
     private $libelle;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $libelle_en;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +40,18 @@ class Vocabulaire
     public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    public function getLibelleEn(): ?string
+    {
+        return $this->libelle_en;
+    }
+
+    public function setLibelleEn(string $libelle_en): self
+    {
+        $this->libelle_en = $libelle_en;
 
         return $this;
     }
