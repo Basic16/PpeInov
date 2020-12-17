@@ -92,12 +92,17 @@ class TestController extends AbstractController
      */
     public function exercice(Request $request): Response
     {
-        
-
-        
         return $this->render('test/exercice.html.twig', [
-            
-            
+               
+        ]);
+    }
+    /**
+     * @Route("/correction", name="correction")
+     */
+    public function correction(Request $request): Response
+    {
+        return $this->render('test/correction.html.twig', [
+               
         ]);
     }
 }

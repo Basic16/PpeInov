@@ -1,15 +1,23 @@
 {% extends 'base.html.twig'%}
 {% block content%}
-
+<h1 class="text-center text-primary p-4">
+				Test
+			</h1>
+<h1 class="text-center text-primary p-4" id="affichage">
+				Traduire le mot suivant
+			</h1>
 <select class="btn btn-primary" id="selectTheme">
     <option value="base">Choisissez un theme</option>
 </select>
 
 <button class="btn btn-primary btn-lg" id="boutonExercice">Commencer le test</button>
 
-<form id="formulaireExercice" class="form-inline my-2 my-lg-0">
-    <input type=text class="form-control mr-sm-2">
-    <button class="btn btn-primary btn-lg">Valider</button>
-</form>
+
+    <input type=text class="form-control mr-sm-2" id="inputExercice">
+    <button class="btn btn-primary btn-lg" id="boutonExerciceFormulaire">Valider</button>
+
+
+<button class="btn btn-primary btn-lg" id="resultat"><a href="{{path('correction')}}">Voir les resultats</a></button>
+
 
 {%endblock%}
