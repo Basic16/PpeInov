@@ -34,6 +34,16 @@ class Abonnement
      */
     private $prix;
 
+    /**
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="abonnement")
+     */
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+
    
 
     public function getId(): ?int
@@ -73,6 +83,36 @@ class Abonnement
     public function setPrix(string $prix): self
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setAbonnement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getAbonnement() === $this) {
+                $user->setAbonnement(null);
+            }
+        }
 
         return $this;
     }

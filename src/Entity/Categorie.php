@@ -26,6 +26,16 @@ class Categorie
      */
     private $libelle;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Vocabulaire::class, mappedBy="categorie")
+     */
+    private $vocabulaires;
+
+    public function __construct()
+    {
+        $this->vocabulaires = new ArrayCollection();
+    }
+
  
 
     public function getId(): ?int
@@ -41,6 +51,36 @@ class Categorie
     public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Vocabulaire[]
+     */
+    public function getVocabulaires(): Collection
+    {
+        return $this->vocabulaires;
+    }
+
+    public function addVocabulaire(Vocabulaire $vocabulaire): self
+    {
+        if (!$this->vocabulaires->contains($vocabulaire)) {
+            $this->vocabulaires[] = $vocabulaire;
+            $vocabulaire->setCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVocabulaire(Vocabulaire $vocabulaire): self
+    {
+        if ($this->vocabulaires->removeElement($vocabulaire)) {
+            // set the owning side to null (unless already changed)
+            if ($vocabulaire->getCategorie() === $this) {
+                $vocabulaire->setCategorie(null);
+            }
+        }
 
         return $this;
     }

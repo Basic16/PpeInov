@@ -62,7 +62,16 @@ class User implements UserInterface
      */
     private $fichier;
 
-   
+    /**
+     * @ORM\ManyToOne(targetEntity=Abonnement::class, inversedBy="users")
+     */
+    private $abonnement;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Test::class, inversedBy="users")
+     */
+    private $test;
+
 
     public function __construct()
     {
@@ -205,6 +214,42 @@ class User implements UserInterface
     public function setFichier($fichier)
     {
         $this->fichier = $fichier;
+
+        return $this;
+    }
+
+    public function getAbonnement(): ?Abonnement
+    {
+        return $this->abonnement;
+    }
+
+    public function setAbonnement(?Abonnement $abonnement): self
+    {
+        $this->abonnement = $abonnement;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Test[]
+     */
+    public function getTest(): Collection
+    {
+        return $this->test;
+    }
+
+    public function addTest(Test $test): self
+    {
+        if (!$this->test->contains($test)) {
+            $this->test[] = $test;
+        }
+
+        return $this;
+    }
+
+    public function removeTest(Test $test): self
+    {
+        $this->test->removeElement($test);
 
         return $this;
     }
