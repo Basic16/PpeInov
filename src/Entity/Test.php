@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TestRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 /**
@@ -27,6 +29,25 @@ class Test
      * @ORM\Column(type="string", length=255)
      */
     private $libelle;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="test")
+     */
+    private $users;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Theme::class, inversedBy="tests")
+     */
+    private $theme;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+
+  
+
+  
 
     public function getId(): ?int
     {
@@ -56,4 +77,46 @@ class Test
 
         return $this;
     }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addTest($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeTest($this);
+        }
+
+        return $this;
+    }
+
+    public function getTheme(): ?Theme
+    {
+        return $this->theme;
+    }
+
+    public function setTheme(?Theme $theme): self
+    {
+        $this->theme = $theme;
+
+        return $this;
+    }
+
+   
+  
 }

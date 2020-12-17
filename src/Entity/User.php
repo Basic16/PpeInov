@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -54,6 +56,29 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $dateinscription;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Fichier::class, cascade={"persist", "remove"})
+     */
+    private $fichier;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Abonnement::class, inversedBy="users")
+     */
+    private $abonnement;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Test::class, inversedBy="users")
+     */
+    private $test;
+
+
+    public function __construct()
+    {
+        $this->test = new ArrayCollection();
+    }
+
+ 
 
     public function getId(): ?int
     {
@@ -180,4 +205,55 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getFichier()
+    {
+        return $this->fichier;
+    }
+
+    public function setFichier($fichier)
+    {
+        $this->fichier = $fichier;
+
+        return $this;
+    }
+
+    public function getAbonnement(): ?Abonnement
+    {
+        return $this->abonnement;
+    }
+
+    public function setAbonnement(?Abonnement $abonnement): self
+    {
+        $this->abonnement = $abonnement;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Test[]
+     */
+    public function getTest(): Collection
+    {
+        return $this->test;
+    }
+
+    public function addTest(Test $test): self
+    {
+        if (!$this->test->contains($test)) {
+            $this->test[] = $test;
+        }
+
+        return $this;
+    }
+
+    public function removeTest(Test $test): self
+    {
+        $this->test->removeElement($test);
+
+        return $this;
+    }
+
+ 
+  
 }
