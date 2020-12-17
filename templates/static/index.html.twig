@@ -6,4 +6,26 @@
 
 {% block content%}
 
+
+
+
+<br/>
+
+
+
+<div>
+
+{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{path('app_login')}}" class="btn btn-primary btn-lg">Se connecter</a>
+        <p>Pas encore inscrit ?</p>
+		<a href="{{ path('inscrire') }}" class="btn btn-primary btn-lg">S'inscrire</a>
+
+
+		
+
+{% else%}
+<a href="{{ path('exercice') }}">Passer un test</a>
+{% endif %}
 {% endblock %}
+
+
