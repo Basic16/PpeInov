@@ -47,4 +47,16 @@ class ThemeRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function NombreVocaParTheme()
+    {
+        $qb = $this->createQueryBuilder('v');
+
+        $qb->select('count(v.id) ')
+            ->where('categorie.id = v.categorie_id')
+            ->groupBy('v.libelle')
+            ;
+
+        return $qb->getQuery()->getArrayResult();
+    }
 }

@@ -10,19 +10,22 @@ use App\Entity\User;
 use App\Entity\Categorie;
 use App\Entity\Theme;
 use App\Entity\Vocabulaire;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AppFixtures extends Fixture
 {
     private $manager;
     private $faker;
-
+    private $encoder;
     
     
 
         
 
-    public function __construct(){
+    public function __construct(UserPasswordEncoderInterface $encoder){
         $this->faker=Factory::create("fr_FR");
+        $this->encoder=$encoder;
     }
 
 
@@ -147,10 +150,12 @@ class AppFixtures extends Fixture
 
     public function listAdmin(ObjectManager $manager){
         $admin = new User();
+        $password = $this->encoder->encodePassword($admin, "admin");
         $admin->setNom('ADMIN');
         $admin->setPrenom('admin');
         $admin->setEmail('admin@admin');
-        $admin->setPassword('admin');
+        $admin->setPassword($password);
+        $admin->setRoles(array('ROLE_USER'));
         $admin->setDatedenaissance(new \DateTime());
         $admin->setDateInscription(new \DateTime());
         $manager->persist($admin);
@@ -167,6 +172,7 @@ class AppFixtures extends Fixture
             ->setPrenom($this->faker->firstName())
             ->setEmail($this->faker->email())
             ->setPassword(strtolower($user->getNom()))
+            ->setRoles(array('ROLE_USER'))
             ->setdatedenaissance($this->faker->dateTimeThisCentury)
             ->setDateInscription($this->faker->dateTimeThisYear);
             $this->addReference('user'.$i, $user);
