@@ -1,6 +1,6 @@
 {% extends 'base.html.twig'%}
 {% block content%}
-<h1 class="text-center text-primary p-4">
+<h1 class="text-center text-primary p-4" id="titre">
 				Test
 			</h1>
 <h1 class="text-center text-primary p-4" id="affichage">
@@ -15,9 +15,20 @@
 
     <input type=text class="form-control mr-sm-2" id="inputExercice">
     <button class="btn btn-primary btn-lg" id="boutonExerciceFormulaire">Valider</button>
+<button class="btn btn-primary btn-lg" id="resultat">Voir les resultats</button>
 
-
-<button class="btn btn-primary btn-lg" id="resultat"><a href="{{path('correction')}}">Voir les resultats</a></button>
-
+<table class="table table-hover" id="tableauhtml">
+    <tr  id="tableaures">
+        <th>
+            question
+        </th>
+        <th>
+            réponse
+        </th>
+        <th>
+            résultat
+        </th>
+    </tr>
+</table>
 
 {%endblock%}

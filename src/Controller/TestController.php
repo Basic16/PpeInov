@@ -96,13 +96,5 @@ class TestController extends AbstractController
                
         ]);
     }
-    /**
-     * @Route("/correction", name="correction")
-     */
-    public function correction(Request $request): Response
-    {
-        return $this->render('test/correction.html.twig', [
-               
-        ]);
-    }
+    
 }
