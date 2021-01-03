@@ -7,18 +7,23 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Categorie;
+use App\Entity\Vocabulaire;
 use App\Form\AjoutCategorieType;
 use App\Form\ModifCategorieType;
+use App\Repository\VocabulaireRepository;
 
 class CategorieController extends AbstractController
 {
     /**
      * @Route("/categorie", name="categorie")
      */
-    public function categorie(Request $request): Response
+    public function categorie(VocabulaireRepository $vocabulaireRepository,Request $request): Response
     {
         $em = $this->getDoctrine();
         $repoCategorie = $em->getRepository(Categorie::class);
+        $products = $this->getDoctrine();
+        
+        
         if ($request->get('supp') != null) {
             $categorie = $repoCategorie->find($request->get('supp'));
             if ($categorie != null) {
@@ -30,6 +35,7 @@ class CategorieController extends AbstractController
         $themes = $repoCategorie->findBy(array(), array('libelle' => 'ASC'));
         return $this->render('categorie/categories.html.twig', [
             'categories' => $themes // Nous passons la liste des thèmes à la vue
+            , "vocaParTheme" => $vocabulaireRepository->nombreVocaParTheme()
         ]);
     }
 

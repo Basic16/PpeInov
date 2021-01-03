@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Theme;
 use App\Form\ModifThemeType;
 
+
 class ThemeController extends AbstractController
 {
     /**
@@ -19,6 +20,7 @@ class ThemeController extends AbstractController
     {
         $em = $this->getDoctrine();
         $repoTheme = $em->getRepository(Theme::class);
+        
         if ($request->get('supp') != null) {
             $theme = $repoTheme->find($request->get('supp'));
             if ($theme != null) {
@@ -30,6 +32,7 @@ class ThemeController extends AbstractController
         $themes = $repoTheme->findBy(array(), array('libelle' => 'ASC'));
         return $this->render('theme/themes.html.twig', [
             'themes' => $themes // Nous passons la liste des thèmes à la vue
+           
         ]);
     }
 
