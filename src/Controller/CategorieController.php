@@ -31,6 +31,10 @@ class CategorieController extends AbstractController
         return $this->render('categorie/categories.html.twig', [
             'categories' => $themes // Nous passons la liste des thèmes à la vue
         ]);
+        $categories = $this->getDoctrine()
+            ->getRepository(Categorie::class)
+            ->groupByCategorie($vocabulaire);
+
     }
 
     /**
