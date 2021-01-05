@@ -9,6 +9,7 @@ use App\Form\TestType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Test;
 use App\Form\ModifTestType;
+use App\Repository\TestRepository;
 
 class TestController extends AbstractController
 {
@@ -43,7 +44,7 @@ class TestController extends AbstractController
     /**
      * @Route("/liste-test", name="liste-test")
      */
-    public function listetheme(Request $request)
+    public function listetest(TestRepository $testRepository, Request $request )
     {
         $em = $this->getDoctrine();
         $repoTest = $em->getRepository(Test::class);
@@ -57,7 +58,8 @@ class TestController extends AbstractController
         }
         $test = $repoTest->findBy(array(), array('libelle' => 'ASC'));
         return $this->render('test/liste-test.html.twig', [
-            'test' => $test
+            'test' => $test,
+            "nombreTestPasse"=> $testRepository->nombreTestPasse()
         ]);
     }
     /**
