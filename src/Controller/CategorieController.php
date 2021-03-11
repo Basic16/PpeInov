@@ -21,7 +21,7 @@ class CategorieController extends AbstractController
     {
         $em = $this->getDoctrine();
         $repoCategorie = $em->getRepository(Categorie::class);
-        $products = $this->getDoctrine();
+        
         
         
         if ($request->get('supp') != null) {
