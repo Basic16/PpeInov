@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Vocabulaire;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\AST\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -47,4 +48,16 @@ class VocabulaireRepository extends ServiceEntityRepository
         ;
     }
     */
+    
+    public function nombreVocaParTheme()
+    {
+        $qb = $this->createQueryBuilder('v')
+        ->select('count(v.id) as nombre, c.libelle as categories')
+        ->innerJoin('App\Entity\Categorie', "c")
+            ->where('v.categorie = c.id')
+            ->groupBy('c.libelle')
+            ;
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
 }

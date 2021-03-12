@@ -47,4 +47,13 @@ class TestRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function nombreTestPasse()
+    {
+        $qb = $this->createQueryBuilder('t')
+        ->select('count(t.id) as nombre')
+        
+            ;
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
 }

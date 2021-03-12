@@ -1,16 +1,24 @@
 $(document).ready(function() {
 	var selectTheme = document.getElementById("selectTheme");
 	var boutonExercice = document.getElementById("boutonExercice")
-	var formulaireExercice = document.getElementById("formulaireExercice")
+	var tableaures= document.getElementById("tableaures")
 	var inputExercice = document.getElementById("inputExercice")
+	var bonnereponse = document.getElementById("bonnereponse")
 	var boutonExerciceFormulaire = document.getElementById("boutonExerciceFormulaire")
 	var affichage = document.getElementById("affichage")
 	var resultat = document.getElementById("resultat")
-	var reponse =""
+	var titre= document.getElementById("titre")
 	var tableau =[]
 	var tableau2 = []
 	var numero= 1
-	var num =""
+	var num =1
+	var tabbonnereponse = []
+	var tabmauvaisereponse = []
+	var tabquestion =[]
+	tabreponse = []
+	var tableauhtml= document.getElementById("tableauhtml")
+
+
 	
 
 	selectTheme.addEventListener('change', e => {
@@ -66,6 +74,8 @@ $(document).ready(function() {
 			console.log(tableau2)
 			 num = Math.floor(Math.random() * tableau.length)
 			affichage.innerText= numero+ "/10 traduire le mot suivant en Anglais: " + tableau2[num]
+			tabquestion.push(tableau2[num])
+			tabreponse.push(tableau[num])
 			
 		});
 		request.fail(function(jqXHR, textStatus){
@@ -80,7 +90,9 @@ $(document).ready(function() {
 			numero = numero+1
 			num = Math.floor(Math.random() * tableau.length)
 			affichage.innerText= numero+ "/10 traduire le mot suivant en Anglais: " + tableau2[num]
-			console.log(numero)
+			tabbonnereponse.push(inputExercice.value)
+			tabquestion.push(tableau2[num])
+			tabreponse.push(tableau[num])
 			
 		}
 		else{
@@ -88,15 +100,73 @@ $(document).ready(function() {
 			num = Math.floor(Math.random() * tableau.length)
 			numero = numero+1
 			affichage.innerText= numero+ "/10 traduire le mot suivant en Anglais: " + tableau2[num]
-			console.log(numero)
+			tabmauvaisereponse.push(inputExercice.value)
+			tabquestion.push(tableau2[num])
+			tabreponse.push(tableau[num])
+			
 		}
 		
-		if (numero == 10){
+		if (numero == 11){
+			affichage.innerText= "test terminé"
+			inputExercice.style.visibility="hidden"
 			resultat.style.visibility="visible"
 			boutonExerciceFormulaire.style.visibility="hidden"
+			
 			
 		}
 		});
 		ajax()
+		resultat.addEventListener("click",e=>{
+		console.log(tabbonnereponse.length)
+		console.log(tabmauvaisereponse.length)
+		tableaures.style.visibility="visible"
+		resultat.style.visibility="hidden"
+		affichage.innerText = "vous avez "+tabbonnereponse.length+" bonnes réponses"
+		inputExercice.style.visibility="hidden"
+		titre.innerText = "Correction"
+		console.log(tabbonnereponse.length)
+		for (i = 0;i<tabbonnereponse.length;i++){
+			var  TR = document.createElement("tr")
+			var  th  = document.createElement("th")
+			var th1 = document.createElement("th")
+			var th3 = document.createElement("th")
+			TXT1 = document.createTextNode(tabquestion[i])
+			var container = document.createElement("span");
+			TXT2 = document.createTextNode(tabbonnereponse[i])
+			container.appendChild(TXT2)
+			container.style.color = "green";
+			th1.appendChild(container)
+			TXT3 = document.createTextNode(tabbonnereponse[i])
+			
+			th.appendChild(TXT1)
+			th3.appendChild(TXT3)
+			TR.appendChild(th)
+			TR.appendChild(th1)
+			TR.appendChild(th3)
+			tableauhtml.appendChild(TR)
+		}
+		for (i = 0;i<tabmauvaisereponse.length;i++){
+			var  TR = document.createElement("tr")
+			var  th  = document.createElement("th")
+			var th1 = document.createElement("th")
+			var th3 = document.createElement("th")
+			TXT1 = document.createTextNode(tabquestion[i])
+			var container = document.createElement("span");
+			TXT2 = document.createTextNode(tabmauvaisereponse[i])
+			container.appendChild(TXT2)
+			TXT3 = document.createTextNode(tabreponse[i])
+			container.style.color = "red";
+			th1.appendChild(container)
+			th.appendChild(TXT1)
+			th3.appendChild(TXT3)
+			TR.appendChild(th)
+			TR.appendChild(th1)
+			TR.appendChild(th3)
+			tableauhtml.appendChild(TR)
+		}
+		
+	})
+			
+		
 		
 });	
