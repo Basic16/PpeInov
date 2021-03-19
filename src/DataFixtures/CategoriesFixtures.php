@@ -35,9 +35,7 @@ class CategoriesFixtures extends Fixture
         
         
         $categories = [
-            1 => [
-                'libelle' => 'Nom commun'
-            ],
+            
             2 => [
                 'libelle' => 'Verbe'
             ],

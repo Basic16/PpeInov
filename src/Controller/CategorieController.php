@@ -21,7 +21,7 @@ class CategorieController extends AbstractController
     {
         $em = $this->getDoctrine();
         $repoCategorie = $em->getRepository(Categorie::class);
-        $products = $this->getDoctrine();
+        
         
         
         if ($request->get('supp') != null) {
@@ -37,10 +37,6 @@ class CategorieController extends AbstractController
             'categories' => $themes // Nous passons la liste des thèmes à la vue
             , "vocaParTheme" => $vocabulaireRepository->nombreVocaParTheme()
         ]);
-        $categories = $this->getDoctrine()
-            ->getRepository(Categorie::class)
-            ->groupByCategorie($vocabulaire);
-
     }
 
     /**
