@@ -72,6 +72,11 @@ class User implements UserInterface
      */
     private $test;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photoProfil;
+
 
     public function __construct()
     {
@@ -250,6 +255,18 @@ class User implements UserInterface
     public function removeTest(Test $test): self
     {
         $this->test->removeElement($test);
+
+        return $this;
+    }
+
+    public function getPhotoProfil(): ?string
+    {
+        return $this->photoProfil;
+    }
+
+    public function setPhotoProfil(?string $photoProfil): self
+    {
+        $this->photoProfil = $photoProfil;
 
         return $this;
     }
