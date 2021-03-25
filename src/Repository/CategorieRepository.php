@@ -47,4 +47,26 @@ class CategorieRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @return Product[]
+     */
+    public function groupByCategorie(int $vocabulaire): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT c
+            FROM App\Entity\Categorie, App\Entity\Vocabulaire v
+            WHERE c.id = v.categorie_id
+            GROUP BY c.libelle ASC'
+        )->setParameter('price', $vocabulaire);
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+
+
+
+
 }
