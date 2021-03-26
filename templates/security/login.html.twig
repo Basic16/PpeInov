@@ -20,7 +20,7 @@
 				{% endif %}
 
 				{% if app.user %}
-					<div class="mb-3">
+					<div class="mb-3" class="text-primary">
 						Vous êtes connectez en tant que :
 						{{ app.user.username }}
 						,
@@ -31,40 +31,44 @@
 				{% endif %}
 
 
-				<label for="inputEmail">
-					Email
+				<label for="inputEmail" class="text-primary">
+					Email:
 				</label>
 				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-				<label for="inputPassword">
-					Mot de passe
+				<label for="inputPassword" class="text-primary">
+					Mot de passe:
 				</label>
 				<input type="password" name="password" id="inputPassword" class="form-control" required>
 
-				<input
-				type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<br>
 
 				{#
-								        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-								        See https://symfony.com/doc/current/security/remember_me.html
-								
-								        <div class="checkbox mb-3">
-								            <label>
-								                <input type="checkbox" name="_remember_me"> Remember me
-								            </label>
-								        </div>
-								    #}
+												        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+												        See https://symfony.com/doc/current/security/remember_me.html
+												
+												        <div class="checkbox mb-3">
+												            <label>
+												                <input type="checkbox" name="_remember_me"> Remember me
+												            </label>
+												        </div>
+												    #}
 
 				<button class="btn btn-lg btn-primary" type="submit">
 					Se connecter
 				</button>
 
 			</form>
-            <p style="margin-top:10px"> Vous n'êtes pas encore inscrit ? </p>
+			<p style="margin-top:10px" class="text-primary">
+				Vous n'êtes pas encore inscrit ?
+			</p>
 			<div class="row justify-content-center" style="margin-top:10px">
-                
-				<button class="btn btn-primary btn-lg nav-link" >
-					<a class="nav-link" href="{{path('inscrire')}}">
+
+				<button class="btn btn-primary btn-lg nav-link">
+					<a class="nav-link" href="{{path('inscrire')}}" >
+						<div class="text-white">
 						S'inscrire
+						</div>
 					</a>
 				</button>
 			</div>

@@ -14,15 +14,15 @@
 		<link rel="stylesheet" href="css/css.css">
 		<title>
 			{% block title %}
-				Innovanglais
+				Innov'Anglais
 			{% endblock %}
 		</title>
 	</head>
-	<body>
+	<body style="background-color: #F0F0F0">
 		{% block body %}
 			<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 				<a class="navbar-brand" href="{{path('index')}}">
-					Innovanglais
+					<img src="../images/logo_small.png" alt="logo" style="width: 5em; height:2.4em; margin-right: 0.5em">
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -33,59 +33,59 @@
 					<ul class="navbar-nav mr-auto">
 						<li>
 							<a class="nav-link" href="{{ path('listeutilisateurs') }}">
-								liste-utilisateurs
+								Liste des utilisateurs
 							</a>
 						</li>
 
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-								thème
+								Thème
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<a class="dropdown-item" href="{{ path('ajout_theme') }}">
-									ajouter un thème
+									Ajouter un thème
 								</a>
 								<a class="dropdown-item" href="{{ path('theme') }}">
-									liste des thèmes
+									Liste des thèmes
 								</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-								catégorie
+								Catégorie
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<a class="dropdown-item" href="{{ path('ajout_categorie') }}">
-									ajouter une catégorie
+									Ajouter une catégorie
 								</a>
 								<a class="dropdown-item" href="{{ path('categorie') }}">
-									liste des catégories
+									Liste des catégories
 								</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-								abonnement
+								Abonnement
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<a class="dropdown-item" href="{{ path('ajout_abonnement') }}">
-									ajouter un abonnement
+									Ajouter un abonnement
 								</a>
 								<a class="dropdown-item" href="{{ path('abonnement') }}">
-									liste des abonnements
+									Liste des abonnements
 								</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-								test
+								Test
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<a class="dropdown-item" href="{{ path('test') }}">
-									ajouter un test
+									Ajouter un test
 								</a>
 								<a class="dropdown-item" href="{{ path('liste-test') }}">
-									liste des tests
+									Liste des tests
 								</a>
 							</div>
 						</li>
@@ -95,14 +95,14 @@
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<a class="dropdown-item" href="{{ path('vocabulaire') }}">
-									ajouter un vocabulaire
+									Ajouter un vocabulaire
 								</a>
 								<a class="dropdown-item" href="{{ path('liste-vocabulaire') }}">
-									liste des vocabulaires
+									Liste des vocabulaires
 								</a>
 							</div>
 
-							
+
 						</li>
 						{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 							<li class="nav-item">
@@ -113,7 +113,7 @@
 
 						{% else %}
 							<li>
-							<a class="nav-link" href="http://serveur1.arras-sio.com/symfony4-4057/PpeInov/public/api/">
+								<a class="nav-link" href="http://serveur1.arras-sio.com/symfony4-4057/PpeInov/public/api/">
 									API
 								</a>
 							</li>
@@ -162,14 +162,11 @@
 	</button>
 </div>
 
-<div class="alert alert-warning alert-dismissible fade show" role="alert"></div></div>
+<div class="alert alert-warning alert-dismissible fade show" role="alert"></div>
+</div>
 {% endfor %}
 {% endblock %}
 {% block content %}
 {% endblock %}
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<script type="text/javascript" src={{asset("js/ajax.js")}}></script>
-
-</body>
-</html>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script><script type="text/javascript" src={{asset("js/ajax.js")}}></script></body></html>

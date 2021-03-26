@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TestController!{% endblock %}
+{% block title %}Innov'Anglais - Ajouter un test{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
@@ -10,7 +10,7 @@
 			</h1>
 		</div>
 {{ form_start(form) }}
-				<div class="form-group mx-auto text-center w-25 p-3">
+				<div class="form-group mx-auto text-center w-25 p-3 text-primary">
 					{{ form_label(form.niveau, 'Niveau : ', {'label_attr': {'class': 'font-weightbold'}}
 					) }}
 					{{ form_widget(form.niveau, {'attr': {'class': 'form-control'}}
@@ -20,7 +20,7 @@
 					{{ form_widget(form.libelle, {'attr': {'class': 'form-control'}}
 					) }}
                    
-				
+				<br>
                 
 				{{ form_widget(form.ajouter, { 'label': "Ajouter", 'attr': {'class': 'btn font-weightbold bg-primary text-white mx-auto text-center'}}) }}
 				{{ form_end(form) }}

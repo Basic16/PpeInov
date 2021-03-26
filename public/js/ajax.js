@@ -35,7 +35,7 @@ $(document).ready(function() {
 	
 	function ajax(){
 		var request=$.ajax({
-		 url:"http://serveur1.arras-sio.com/symfony4-4057/PpeInov/public/api/themes", 
+		 url:"http://serveur1.arras-sio.com/symfony4-4055/PpeInov/public/api/themes", 
 		 method: "GET",
 		 dataType: "json",
 		 beforeSend: function(xhr){
@@ -57,7 +57,7 @@ $(document).ready(function() {
     
 	function ajax2(){
 		var request=$.ajax({
-		 url:"http://serveur1.arras-sio.com/symfony4-4057/PpeInov/public/api/vocabulaires", 
+		 url:"http://serveur1.arras-sio.com/symfony4-4055/PpeInov/public/api/vocabulaires", 
 		 method: "GET",
 		 dataType: "json",
 		 beforeSend: function(xhr){
