@@ -25,23 +25,12 @@ class VocabulairesFixtures extends Fixture
     {
         $this->faker = Factory::create("fr_FR");
     }
-
-
-
-
     public function load(ObjectManager $manager)
     {
         $this->manager = $manager;
 
-        //$categorie = $this->getReference('categorieNC_1');
-
-
-
-
         $vocabulaires =
-
             [
-
                 // Fruits
                 1 => [
                     'libelle' => 'Cerise',

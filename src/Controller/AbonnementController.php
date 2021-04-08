@@ -29,7 +29,7 @@ class AbonnementController extends AbstractController
         }
         $abonnements = $repoAbonnement->findBy(array(), array('type' => 'ASC'));
         return $this->render('abonnement/abonnements.html.twig', [
-            'abonnements' => $abonnements // Nous passons la liste des abonnements à la vue
+            'abonnements' => $abonnements 
         ]);
     }
 
@@ -38,7 +38,7 @@ class AbonnementController extends AbstractController
      */
     public function ajoutAbonnement(Request $request)
     {
-        $abonnement = new Abonnement(); // Instanciation d’un objet Abonnement
+        $abonnement = new Abonnement(); 
         $form = $this->createForm(AjoutAbonnementType::class, $abonnement);
 
         if ($request->isMethod('POST')) {
@@ -48,15 +48,15 @@ class AbonnementController extends AbstractController
 
                 $em = $this->getDoctrine()->getManager();
 
-                $em->persist($abonnement); // Nous enregistrons notre nouveau abonnement
-                $em->flush(); // Nous validons notre ajout
-                $this->addFlash('notice', 'Abonnement inséré'); // Nous préparons le message à
+                $em->persist($abonnement); 
+                $em->flush(); 
+                $this->addFlash('notice', 'Abonnement inséré'); 
 
             }
             return $this->redirectToRoute('ajout_abonnement');
         }
         return $this->render('abonnement/ajoutAbonnement.html.twig', [
-            'form' => $form->createView() // Nous passons le formulaire à la vue
+            'form' => $form->createView() 
         ]);
     }
 

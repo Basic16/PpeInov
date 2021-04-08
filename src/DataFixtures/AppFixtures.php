@@ -10,6 +10,7 @@ use App\Entity\User;
 use App\Entity\Categorie;
 use App\Entity\Theme;
 use App\Entity\Vocabulaire;
+use App\Entity\Test;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -47,6 +48,20 @@ class AppFixtures extends Fixture
         $admin->setDatedenaissance(new \DateTime());
         $admin->setDateInscription(new \DateTime());
         $manager->persist($admin);
+        
+
+        $manager->flush();
+    }
+
+    public function listTest(ObjectManager $manager){
+        $test = new Test();
+        
+        $test->setLibelle('Test');
+        $test->setNiveau('1');
+        $test->setEmail('admin@admin');
+        $test->setPassword($password);
+       
+        $manager->persist($test);
         
 
         $manager->flush();
