@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{parent()}}
+	- Statistiques des thèmes
+{% endblock %}
+{% block body %}
+	{{parent()}}
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<h1 class="text-center text-primary p-4">
+				Statistiques des thèmes
+			</h1>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-8 p-4 m-0 text-primary">
+				
+                    <table class="table table-hover" style="border:1px solid black;">
+						<thead class="text-primary">
+							<tr>
+								<th scope="col">
+									Theme
+								</th>
+								<th class="text-primary" scope="col"> Nombre de vocabulaires</th>
+								
+							</tr>
+						</thead>
+						<tbody style="border:1px solid black;" >
+							{% for voca in vocasParTheme %}
+								<tr class="{{ cycle(['table-primary'], loop.index0) }}">
+									<td>
+										{{voca.themes |capitalize }}
+									</td>
+									<td>
+										
+										{{voca.nombre }}
+									</td>
+
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+		
+{% endblock %}

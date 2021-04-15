@@ -9,6 +9,8 @@ use App\Form\AjoutThemeType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Theme;
 use App\Form\ModifThemeType;
+use App\Repository\ThemeRepository;
+use App\Entity\Vocabulaire;
 
 
 class ThemeController extends AbstractController
@@ -16,7 +18,7 @@ class ThemeController extends AbstractController
     /**
      * @Route("/theme", name="theme")
      */
-    public function theme(Request $request)
+    public function theme(ThemeRepository $themeRepository, Request $request): Response
     {
         $em = $this->getDoctrine();
         $repoTheme = $em->getRepository(Theme::class);
@@ -31,7 +33,32 @@ class ThemeController extends AbstractController
         }
         $themes = $repoTheme->findBy(array(), array('libelle' => 'ASC'));
         return $this->render('theme/themes.html.twig', [
-            'themes' => $themes // Nous passons la liste des thèmes à la vue
+            'themes' => $themes 
+            , "vocasParTheme" => $themeRepository->nbVocaParTheme()
+           
+        ]);
+    }
+
+    /**
+     * @Route("/statistiques", name="statistiques")
+     */
+    public function statsTheme(ThemeRepository $themeRepository, Request $request): Response
+    {
+        $em = $this->getDoctrine();
+        $repoTheme = $em->getRepository(Theme::class);
+        
+        if ($request->get('supp') != null) {
+            $theme = $repoTheme->find($request->get('supp'));
+            if ($theme != null) {
+                $em->getManager()->remove($theme);
+                $em->getManager()->flush();
+            }
+            return $this->redirectToRoute('theme');
+        }
+        $themes = $repoTheme->findBy(array(), array('libelle' => 'ASC'));
+        return $this->render('statistiques/statistiques.html.twig', [
+            'themes' => $themes 
+            , "vocasParTheme" => $themeRepository->nbVocaParTheme()
            
         ]);
     }

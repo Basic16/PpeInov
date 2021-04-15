@@ -34,7 +34,7 @@ class CategorieController extends AbstractController
         }
         $themes = $repoCategorie->findBy(array(), array('libelle' => 'ASC'));
         return $this->render('categorie/categories.html.twig', [
-            'categories' => $themes // Nous passons la liste des thèmes à la vue
+            'categories' => $themes
             , "vocaParTheme" => $vocabulaireRepository->nombreVocaParTheme()
         ]);
     }
@@ -44,7 +44,7 @@ class CategorieController extends AbstractController
      */
     public function ajoutCategorie(Request $request)
     {
-        $categorie = new Categorie(); // Instanciation d’un objet Theme
+        $categorie = new Categorie(); // Instanciation d’un objet 
         $form = $this->createForm(AjoutCategorieType::class, $categorie);
 
         if ($request->isMethod('POST')) {
@@ -54,9 +54,9 @@ class CategorieController extends AbstractController
 
                 $em = $this->getDoctrine()->getManager();
 
-                $em->persist($categorie); // Nous enregistrons notre nouveau thème
+                $em->persist($categorie); 
                 $em->flush(); // Nous validons notre ajout
-                $this->addFlash('notice', 'catégorie insérée'); // Nous préparons le message à
+                $this->addFlash('notice', 'catégorie insérée'); 
 
             }
             return $this->redirectToRoute('ajout_categorie');

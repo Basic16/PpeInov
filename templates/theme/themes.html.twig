@@ -54,6 +54,11 @@
 							
 						</tbody>
 					</table>
+					{% for voca in vocasParTheme %}
+                                
+						<p> Il y a {{ voca.nombre }} vocabulaire dans le theme {{voca.themes }}</p>
+
+                    {% endfor %}
 
 
 				</div>
