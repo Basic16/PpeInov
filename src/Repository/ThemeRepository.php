@@ -51,15 +51,14 @@ class ThemeRepository extends ServiceEntityRepository
     public function nbVocaParTheme()
     {
         $qb = $this->createQueryBuilder('t')
-        ->select('COUNT(v.id) as Nombre, t.libelle as themes')
-        ->from('App\Entity\Vocabulaire', "v", 'App\Entity')
+        ->select('COUNT(v.id) as nombre, t.libelle as themes')
+        ->from('App\Entity\Vocabulaire', "v")
             ->where('v.id = t.id')
             ->groupBy('t.libelle')
             ;
         $query = $qb->getQuery();
         return $query->execute();
 
-        
     }
 
 }
