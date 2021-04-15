@@ -59,17 +59,7 @@ class ThemeRepository extends ServiceEntityRepository
         $query = $qb->getQuery();
         return $query->execute();
 
-        $conn=$this->getEntityManager()->getConnection();
-        $sql='
-        SELECT COUNT(v.id) as Nombre, t.libelle as themes
-        FROM vocabulaire v, theme t, theme_vocabulaire tv
-        WHERE v.id = tv.vocabulaire_id AND tv.theme_id = t.id
-        GROUP BY t.libelle
-        ';
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['theme' => $theme]);
-
-        return $stmt->fetchAll();
+        
     }
 
 }
