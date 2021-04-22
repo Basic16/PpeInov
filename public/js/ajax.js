@@ -18,7 +18,7 @@ $(document).ready(function() {
 	tabreponse = []
 	var tableauhtml= document.getElementById("tableauhtml")
 	var tabApi=[]
-
+var user=document.getElementById("user")
 
 	
 
@@ -115,7 +115,7 @@ $(document).ready(function() {
 			resultat.style.visibility="visible"
 			boutonExerciceFormulaire.style.visibility="hidden"
 			post()
-			console.log(tabApi)
+			
 			
 			
 		}
@@ -128,7 +128,7 @@ $(document).ready(function() {
 		affichage.innerText = "vous avez "+tabbonnereponse.length+" bonnes réponses"
 		inputExercice.style.visibility="hidden"
 		titre.innerText = "Correction"
-		console.log(tabbonnereponse.length)
+		
 		for (i = 0;i<tabbonnereponse.length;i++){
 			var  TR = document.createElement("tr")
 			var  th  = document.createElement("th")
@@ -185,7 +185,7 @@ $(document).ready(function() {
 					niveau: 0,
 					libelle: "test",
 					users: [
-						"symfony4-4057/PpeInov/public/api/users/23"
+						"/symfony4-4057/PpeInov/public/api/users/"+user.value
 					  ],
 					theme: "/symfony4-4057/PpeInov/public/api/themes/13",
 					note: tabbonnereponse.length,
@@ -204,11 +204,11 @@ $(document).ready(function() {
 					dataType: "json",
 					beforeSend: function(xhr){
 					xhr.overrideMimeType("application/json; charset=utf-8");
-					console.log("test")
+					
 				}	
 			   });
 			   request.done(function(msg){
-				console.log("ajout effectué");
+				
 				});
 				request.fail(function(jqXHR, textStatus, error){
 				console.log(error);
