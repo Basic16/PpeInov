@@ -17,6 +17,7 @@ $(document).ready(function() {
 	var tabquestion =[]
 	tabreponse = []
 	var tableauhtml= document.getElementById("tableauhtml")
+	var tabApi=[]
 
 
 	
@@ -35,7 +36,7 @@ $(document).ready(function() {
 	
 	function ajax(){
 		var request=$.ajax({
-		 url:"http://serveur1.arras-sio.com/symfony4-4066/PpeInov/public/api/themes", 
+		 url:"http://serveur1.arras-sio.com/symfony4-4057/PpeInov/public/api/themes", 
 		 method: "GET",
 		 dataType: "json",
 		 beforeSend: function(xhr){
@@ -57,7 +58,7 @@ $(document).ready(function() {
     
 	function ajax2(){
 		var request=$.ajax({
-		 url:"http://serveur1.arras-sio.com/symfony4-4066/PpeInov/public/api/vocabulaires", 
+		 url:"http://serveur1.arras-sio.com/symfony4-4057/PpeInov/public/api/vocabulaires", 
 		 method: "GET",
 		 dataType: "json",
 		 beforeSend: function(xhr){
@@ -85,14 +86,16 @@ $(document).ready(function() {
 	}
 
 	boutonExerciceFormulaire.addEventListener('click', e => {
+		tabApi.push(inputExercice.value)
 		if (inputExercice.value==tableau[num]){
-			console.log("cest bon")
+			
 			numero = numero+1
 			num = Math.floor(Math.random() * tableau.length)
 			affichage.innerText= numero+ "/10 traduire le mot suivant en Anglais: " + tableau2[num]
 			tabbonnereponse.push(inputExercice.value)
 			tabquestion.push(tableau2[num])
 			tabreponse.push(tableau[num])
+			
 			
 		}
 		else{
@@ -111,14 +114,15 @@ $(document).ready(function() {
 			inputExercice.style.visibility="hidden"
 			resultat.style.visibility="visible"
 			boutonExerciceFormulaire.style.visibility="hidden"
+			post()
+			console.log(tabApi)
 			
 			
 		}
 		});
 		ajax()
 		resultat.addEventListener("click",e=>{
-		console.log(tabbonnereponse.length)
-		console.log(tabmauvaisereponse.length)
+		
 		tableaures.style.visibility="visible"
 		resultat.style.visibility="hidden"
 		affichage.innerText = "vous avez "+tabbonnereponse.length+" bonnes réponses"
@@ -167,6 +171,48 @@ $(document).ready(function() {
 		
 	})
 			
-		
+		function post(){
+			
+			var request=$.ajax({
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+					},
+				url:"http://serveur1.arras-sio.com/symfony4-4057/PpeInov/public/api/tests", 
+				method: "POST",
+
+				data:JSON.stringify({
+					niveau: 0,
+					libelle: "test",
+					users: [
+						"symfony4-4057/PpeInov/public/api/users/23"
+					  ],
+					theme: "/symfony4-4057/PpeInov/public/api/themes/13",
+					note: tabbonnereponse.length,
+					reponse1: tabApi[0],
+					reponse2: tabApi[1],
+					reponse3: tabApi[2],
+					reponse4: tabApi[3],
+					reponse5: tabApi[4],
+					reponse6: tabApi[5],
+					reponse7: tabApi[6],
+					reponse8: tabApi[7],
+					reponse9: tabApi[8],
+					reponse10: tabApi[9],
+					additionalProp1: {}
+					}),
+					dataType: "json",
+					beforeSend: function(xhr){
+					xhr.overrideMimeType("application/json; charset=utf-8");
+					console.log("test")
+				}	
+			   });
+			   request.done(function(msg){
+				console.log("ajout effectué");
+				});
+				request.fail(function(jqXHR, textStatus, error){
+				console.log(error);
+				});
+		}
 		
 });	
