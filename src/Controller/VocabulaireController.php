@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\AjoutVocabulaireType;
+use App\Form\AjoutNiveauVocaType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Vocabulaire;
 use App\Form\ModifVocabulaireType;
@@ -18,7 +19,7 @@ class VocabulaireController extends AbstractController
     public function index(Request $request): Response
     {   
         $vocabulaire = new Vocabulaire(); // Instanciation d’un objet Abonnement
-        $form = $this->createForm(AjoutVocabulaireType::class, $vocabulaire);
+        $form = $this->createForm(AjoutNiveauVocaType::class, $vocabulaire);
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
@@ -85,4 +86,25 @@ class VocabulaireController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    /**
+     * @Route("/vocabulaire-niveau/{id}", name="niveau", requirements={"id"="\d+"} )
+     */
+     public function vocabulaireNiveau(int $id, Request $request): Response
+     {
+        $em = $this->getDoctrine();
+        $repoVocabulaire = $em->getRepository(Vocabulaire::class);
+        if ($request->get('supp') != null) {
+            $vocabulaire = $repoVocabulaire->find($request->get('supp'));
+            if ($vocabulaire != null) {
+                $em->getManager()->remove($vocabulaire);
+                $em->getManager()->flush();
+            }
+            return $this->redirectToRoute('vocabulaire');
+        }
+        $vocabulaire = $repoVocabulaire->findBy(array(), array('libelle' => 'ASC'));
+        return $this->render('vocabulaire/liste-niveauvoca.html.twig', [
+            'vocabulaire' => $vocabulaire
+        ]);
+
+     }
 }

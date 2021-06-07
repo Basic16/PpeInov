@@ -46,6 +46,11 @@ class Vocabulaire
      */
     private $categorie;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Niveau::class, inversedBy="vocabulaires")
+     */
+    private $niveau;
+
 
     public function getId(): ?int
     {
@@ -111,6 +116,18 @@ class Vocabulaire
     public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getNiveau(): ?Niveau
+    {
+        return $this->niveau;
+    }
+
+    public function setNiveau(?Niveau $niveau): self
+    {
+        $this->niveau = $niveau;
 
         return $this;
     }

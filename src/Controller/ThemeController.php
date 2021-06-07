@@ -33,7 +33,7 @@ class ThemeController extends AbstractController
         }
         $themes = $repoTheme->findBy(array(), array('libelle' => 'ASC'));
         return $this->render('theme/themes.html.twig', [
-            'themes' => $themes 
+            'themes' => $themes
             , "vocasParTheme" => $themeRepository->nbVocaParTheme()
            
         ]);
